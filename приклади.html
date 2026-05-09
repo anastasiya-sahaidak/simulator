@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Теорія</title>
+    <link rel="stylesheet" href="styleforteori.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <img src="logo.png" alt="logo">
+            </div>
+
+            <div>
+                <div class="title">TransOpt</div>
+                <div class="subtitle">Транспортна задача</div>
+            </div>
+        </div>
+
+        <nav>
+            <a href="ТЗ.html">Головна</a>
+            <a href="Теорія.html" >Теорія</a>
+            <a href="приклади.html" class="active">Приклади</a>
+            <a href="Тренажер.html" >Тренажер</a>
+
+        </nav>
+
+    </aside>
+
+    <main class="content">
+        <div class="theory-container">
+            <div class="theory-content">
+                <div class="card">
+                    <h2>Приклад розв'язування методом північно-західного кута</h2>
+
+                    <p>Нехай задано задачу</p>
+                    
+                    <table class="transport-table">
+                        <tr>
+                            <th>Постачальники</th>
+                            <th>B<sub>1</sub></th>
+                            <th>B<sub>2</sub></th>
+                            <th>B<sub>3</sub></th>
+                            <th>Запаси</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>1</sub></b></th>
+                            <th>4</th>
+                            <th>8</th>
+                            <th>5</th>
+                            <th>30</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>2</sub></b></th>
+                            <th>6</th>
+                            <th>3</th>
+                            <th>7</th>
+                            <th>40</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>3</sub></b></th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>4</th>
+                            <th>20</th>
+                        </tr>
+                        <tr>
+                            <th><b>Потреби</b></th>
+                            <th>20</th>
+                            <th>30</th>
+                            <th>40</th>
+                            <th></th>
+                        </tr>
+                    
+
+                    </table>
+                    <h3>Крок 1</h3>
+                        <p>Починаємо з клітинки A<sub>1</sub>B<sub>1</sub></p>
+                        <p>\(min(30,20)=20\)</p>
+                        <p>Записуємо: \(x_{11}=20\)</p>
+                        <P>Залишки:</P>
+                        <ul>
+                            <li>запас A<sub>1</sub>: \(30-20=10\)</li>
+                            <li>потреба B<sub>1</sub>: \(20-20=0\)</li>
+                        </ul>
+                        <p>Стовпець B<sub>1</sub> викреслюється</p>
+
+                        <h3>Крок 2</h3>
+                        <p>Переходимо до A<sub>1</sub>B<sub>2</sub></p>
+                        <p>\(min(10,30)=10\)</p>
+                        <p>\(x_{12}=20\)</p>
+                        <p>Залишки:</p>
+                        <ul>
+                            <li>запас A<sub>1</sub>:0</li>
+                            <li>потреба B<sub>2</sub>:20</li>
+                        </ul>
+                        <p>Стовпець B<sub>1</sub> викреслюється</p>
+
+                        <h3>Крок 3</h3>
+                        <p>Перехдимо до A<sub>2</sub>B<sub>2</sub></p>
+                        <p>\(min(40,20)=20\)</p>
+                        <p>\(x_{22}=20\)</p>
+                        <p>Залишки:</p>
+                        <ul>
+                            <li>запас A<sub>2</sub>:20</li>
+                            <li>потреба B<sub>2</sub>:0</li>
+                        </ul>
+                        <p>Стовпець B<sub>2</sub> викреслюється</p>
+
+                        <h3>Крок 4</h3>
+                        <p>Перехдимо до A<sub>2</sub>B<sub>3</sub></p>
+                        <p>\(min(20,40)=20\)</p>
+                        <p>\(x_{23}=20\)</p>
+                        <p>Залишки:</p>
+                        <ul>
+                            <li>запас A<sub>2</sub>:0</li>
+                            <li>потреба B<sub>3</sub>:20</li>
+                        </ul>
+                        <p>Рядок A<sub>2</sub> викреслюється</p>
+
+                        <h3>Крок 5</h3>
+                        <p>Перехдимо до A<sub>3</sub>B<sub>3</sub></p>
+                        <p>\(min(20,20)=20\)</p>
+                        <p>\(x_{33}=20\)</p>
+                        <p>Залишки:</p>
+                        <ul>
+                            <li>запас A<sub>3</sub>:0</li>
+                            <li>потреба B<sub>3</sub>:0</li>
+                        </ul>
+                        
+                        <h3>Отриманий план</h3>
+
+                        <table class="transport-table">
+                        <tr>
+                            <th>Постачальники</th>
+                            <th>B<sub>1</sub></th>
+                            <th>B<sub>2</sub></th>
+                            <th>B<sub>3</sub></th>
+                        
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>1</sub></b></th>
+                            <th>20</th>
+                            <th>10</th>
+                            <th>0</th>
+                           
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>2</sub></b></th>
+                            <th>0</th>
+                            <th>20</th>
+                            <th>20</th>
+                    
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>3</sub></b></th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>20</th>
+                           
+                        </tr>
+                    </table>
+
+                    <h3>Загальна вартість:</h3>
+                    <p>\(F=20\cdot4+10\cdot8+20\cdot3+20\cdot7+20\cdot4\)</p>
+                    <p>\(F=440\)</p>
+                    
+                </div>
+            </div>
+        
+        </div>
+        <p></p>
+  <div class="theory-container">
+            <div class="theory-content">
+                <div class="card">
+                    <h2>Приклад розв'язування методом мінімального тарифу</h2>
+
+                    <p>Нехай задано задачу</p>
+                    
+                    <table class="transport-table">
+                        <tr>
+                            <th>Постачальники</th>
+                            <th>B<sub>1</sub></th>
+                            <th>B<sub>2</sub></th>
+                            <th>B<sub>3</sub></th>
+                            <th>Запаси</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>1</sub></b></th>
+                            <th>4</th>
+                            <th>8</th>
+                            <th>5</th>
+                            <th>30</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>2</sub></b></th>
+                            <th>6</th>
+                            <th>3</th>
+                            <th>7</th>
+                            <th>40</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>3</sub></b></th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>4</th>
+                            <th>20</th>
+                        </tr>
+                        <tr>
+                            <th><b>Потреби</b></th>
+                            <th>20</th>
+                            <th>30</th>
+                            <th>40</th>
+                            <th></th>
+                        </tr>
+                    
+
+                    </table>
+                    <h3>Крок 1</h3>
+                        <p>Найменший тариф: 3 у клітинці \(A_2B_2\)</p>
+                        <p>\(min(40,30)=30\)</p>
+                        <p>Записуємо: \(x_{22}=30\)</p>
+                        <P>Залишки:</P>
+                        <ul>
+                            <li>запас A<sub>2</sub>: 10</li>
+                            <li>потреба B<sub>2</sub>:0</li>
+                        </ul>
+                        <p>Стовпець B<sub>2</sub> викреслюється</p>
+
+                        <h3>Крок 2</h3>
+                        <p>Серед решти мінімальний тариф: 4 у клітинці \(A_1B_1\)</p>
+                        <p>\(min(30,20)=20\)</p>
+                        <p>\(x_{11}=20\)</p>
+                        <p>Залишки:</p>
+                        <ul>
+                            <li>запас A<sub>1</sub>:10</li>
+                            <li>потреба B<sub>1</sub>:0</li>
+                        </ul>
+                        <p>Стовпець B<sub>1</sub> викреслюється</p>
+
+                        <h3>Крок 3</h3>
+                        <p>Залишається лише стовпець \(B_3\)</p>
+                        <p>\(x_{13}=10\)</p>
+                        <p>\(x_{23}=10\)</p>
+                        <p>\(x_{33}=20\)</p>
+                    
+                        <h3>Отриманий план</h3>
+
+                        <table class="transport-table">
+                        <tr>
+                            <th>Постачальники</th>
+                            <th>B<sub>1</sub></th>
+                            <th>B<sub>2</sub></th>
+                            <th>B<sub>3</sub></th>
+                        
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>1</sub></b></th>
+                            <th>20</th>
+                            <th>0</th>
+                            <th>10</th>
+                           
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>2</sub></b></th>
+                            <th>0</th>
+                            <th>30</th>
+                            <th>10</th>
+                    
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>3</sub></b></th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>20</th>
+                           
+                        </tr>
+                    </table>
+
+                    <h3>Загальна вартість:</h3>
+                    <p>\(F=20\cdot4+30\cdot3+10\cdot5+10\cdot7+20\cdot4\)</p>
+                    <p>\(F=370\)</p>
+                    
+                </div>
+            </div>
+        
+        </div>
+    <p></p>
+     <div class="theory-container">
+            <div class="theory-content">
+                <div class="card">
+                    <h2>Приклад розв'язування методом подвійної переваги</h2>
+
+                    <p>Нехай задано задачу</p>
+                    
+                    <table class="transport-table">
+                        <tr>
+                            <th>Постачальники</th>
+                            <th>B<sub>1</sub></th>
+                            <th>B<sub>2</sub></th>
+                            <th>B<sub>3</sub></th>
+                            <th>Запаси</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>1</sub></b></th>
+                            <th>4</th>
+                            <th>8</th>
+                            <th>5</th>
+                            <th>30</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>2</sub></b></th>
+                            <th>6</th>
+                            <th>3</th>
+                            <th>7</th>
+                            <th>40</th>
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>3</sub></b></th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>4</th>
+                            <th>20</th>
+                        </tr>
+                        <tr>
+                            <th><b>Потреби</b></th>
+                            <th>20</th>
+                            <th>30</th>
+                            <th>40</th>
+                            <th></th>
+                        </tr>
+                    
+
+                    </table>
+                    <h3>Крок 1</h3>
+                        <p>Знаходимо мінімальні тарифи у рядках та стовпцях.</p>
+                        <h4>Мінімальні у рядках:</h4>
+                        <ul>
+                            <li>\(A_1\rightarrow 4\)</li>
+                            <li>\(A_2\rightarrow 3\)</li>
+                            <li>\(A_3\rightarrow 4\)</li>
+                        </ul>
+                        <h4>Мінімальні у стовпцях:</h4>
+                        <ul>
+                            <li>\(B_1\rightarrow 4\)</li>
+                            <li>\(B_2\rightarrow 3\)</li>
+                            <li>\(B_3\rightarrow 4\)</li>
+                        </ul>
+                        <p>Клітинки подвійної переваги: \(A_1B_1\); \(A_2B\)</p>
+
+                        <h3>Крок 2</h3>
+                        <p>Серед решти мінімальний тариф: 4 у клітинці \(A_1B_1\)</p>
+                        <p>\(min(30,20)=20\)</p>
+                        <p>\(x_{11}=20\)</p>
+                        <p>Залишки:</p>
+                        <ul>
+                            <li>запас A<sub>1</sub>:10</li>
+                            <li>потреба B<sub>1</sub>:0</li>
+                        </ul>
+                        <p>Стовпець B<sub>1</sub> викреслюється</p>
+
+                        <h3>Крок 3</h3>
+                        <p>Залишається лише стовпець \(B_3\)</p>
+                        <p>\(x_{13}=10\)</p>
+                        <p>\(x_{23}=10\)</p>
+                        <p>\(x_{33}=20\)</p>
+                    
+                        <h3>Отриманий план</h3>
+
+                        <table class="transport-table">
+                        <tr>
+                            <th>Постачальники</th>
+                            <th>B<sub>1</sub></th>
+                            <th>B<sub>2</sub></th>
+                            <th>B<sub>3</sub></th>
+                        
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>1</sub></b></th>
+                            <th>20</th>
+                            <th>0</th>
+                            <th>10</th>
+                           
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>2</sub></b></th>
+                            <th>0</th>
+                            <th>30</th>
+                            <th>10</th>
+                    
+                        </tr>
+                        <tr>
+                            <th><b>A<sub>3</sub></b></th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>20</th>
+                           
+                        </tr>
+                    </table>
+
+                    <h3>Загальна вартість:</h3>
+                    <p>\(F=20\cdot4+30\cdot3+10\cdot5+10\cdot7+20\cdot4\)</p>
+                    <p>\(F=370\)</p>
+                    
+                </div>
+            </div>
+        
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

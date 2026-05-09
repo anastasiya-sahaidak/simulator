@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>TransOpt Trainer</title>
+<link rel="stylesheet" href="stylefortrenager.css">
+</head>
+
+<body>
+
+
+<aside class="sidebar">
+    <div class="logo">
+        <img src="logo.png" alt="logo">
+        <div>
+            <div class="title">TransOpt</div>
+            <div class="subtitle">Транспортна задача</div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="ТЗ.html"> Головна</a>
+        <a href="Теорія.html"> Теорія</a>
+        <a href="приклади.html">Приклади</a>
+         <a href="Тренажер.html" class="active"> Тренажер</a>
+
+    </nav>
+</aside>
+
+<!-- Контент -->
+<main class="content">
+
+<h1>Тренажер</h1>
+
+<div class="card">
+    <select id="mode">
+  <option value="train" selected>Тренажер</option>
+  <option value="control">Контроль</option>
+</select>
+Споживачі:
+<select id="rows">
+  <option value="2">2</option>
+  <option value="3" selected>3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select>
+
+Постачальники:
+<select id="cols">
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4" selected>4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select>
+
+Метод:
+<select id="method">
+<option value="nw">Північно-західний</option>
+<option value="min">Мін. тариф</option>
+<option value="double">Подвійна перевага</option>
+<option value="vogel">Фогеля</option>
+</select>
+
+<br><br>
+
+<button class="btn" onclick="generateTask()">Згенерувати</button>
+<button class="btn" onclick="enableCustom()">Ввести вручну</button>
+</div>
+
+<div class="card" id="task"></div>
+
+<div class="layout">
+
+    <div class="card side">
+        <button class="btn" onclick="checkSolution()">Перевірити</button>
+        <button class="btn secondary" onclick="showCorrect()">Показати</button>
+        <div id="message"></div>
+        <div id="costResult"></div>
+        <div id="errors"></div>
+        <div id="steps"></div>
+    </div>
+</div>
+
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
