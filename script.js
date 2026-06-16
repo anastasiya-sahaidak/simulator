@@ -119,7 +119,7 @@ function enableCustom() { //ручний ввід
         html += `<th>P${j + 1}</th>`;
     }
 
-    html += "<th>Запас</th></tr>";
+    html += "<th>Потреба</th></tr>";
 
     for (let i = 0; i < r; i++) {
 
@@ -141,7 +141,7 @@ function enableCustom() { //ручний ввід
         html += "</tr>";
     }
 
-    html += "<tr><th>Потреби</th>";
+    html += "<tr><th>Запас</th>";
 
     for (let j = 0; j < c; j++) {
 
