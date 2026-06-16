@@ -675,11 +675,11 @@ function renderTask() { // відображення
 
         html += `
         <th>
-            ${isFakeConsumer ? "ФС" : "P" + (j + 1)}
+            ${isFakeConsumer ? "FP" : "P" + (j + 1)}
         </th>`;
     });
 
-    html += "<th>Запас</th></tr>";
+    html += "<th>Потреба</th></tr>";
 
     supply.forEach((s, i) => {
 
@@ -691,7 +691,7 @@ function renderTask() { // відображення
 
         html += `
         <th>
-            ${isFakeSupplier ? "ФП" : "C" + (i + 1)}
+            ${isFakeSupplier ? "FС" : "C" + (i + 1)}
         </th>`;
 
         demand.forEach((_, j) => {
@@ -721,7 +721,7 @@ function renderTask() { // відображення
         html += "</tr>";
     });
 
-    html += "<tr><th>Потреби</th>";
+    html += "<tr><th>Запас</th>";
 
     demand.forEach((d, j) => {
 
@@ -768,25 +768,11 @@ function makeAllocation(i, j) { //Поставка
 
     let val = +el.value || 0;
 
-    if (
-        val > currentSupply[i] ||
-        val > currentDemand[j]
-    ) {
+    let key = `${i}-${j}`;
 
-        showMessage(
-            "Поставка перевищує залишки",
-            "error"
-        );
-
-        el.value = "";
-
-        return;
+    if (!attempts[key]) {
+        attempts[key] = 0;
     }
-
-    currentSupply[i] -= val;
-    currentDemand[j] -= val;
-
-    updateHeaders();
 
     if (mode.value === "train") {
 
@@ -796,10 +782,73 @@ function makeAllocation(i, j) { //Поставка
 
             el.className = "correct";
 
+            currentSupply[i] -= val;
+            currentDemand[j] -= val;
+
+            updateHeaders();
+
+            el.disabled = true;
+
+            delete attempts[key];
+
         } else {
 
+            attempts[key]++;
+
             el.className = "wrong";
+
+            if (attempts[key] >= 3) {
+
+                el.value = correctVal;
+
+                el.className = "correct";
+
+                currentSupply[i] -= correctVal;
+                currentDemand[j] -= correctVal;
+
+                updateHeaders();
+
+                el.disabled = true;
+
+                showMessage(
+                    "Після 3 спроб показано правильну відповідь",
+                    "info"
+                );
+
+                delete attempts[key];
+
+            } else {
+
+                showMessage(
+                    `Неправильно. Спроба ${attempts[key]} із 3`,
+                    "error"
+                );
+            }
+
+            return;
         }
+
+    } else {
+
+        if (
+            val > currentSupply[i] ||
+            val > currentDemand[j]
+        ) {
+
+            showMessage(
+                "Поставка перевищує залишки",
+                "error"
+            );
+
+            el.value = "";
+
+            return;
+        }
+
+        currentSupply[i] -= val;
+        currentDemand[j] -= val;
+
+        updateHeaders();
     }
 
     if (
@@ -807,13 +856,19 @@ function makeAllocation(i, j) { //Поставка
         currentDemand[j] === 0
     ) {
 
-        askBlockChoice(i, j);
+        if (typeof askBlockChoice === "function") {
+            askBlockChoice(i, j);
+        }
 
-    } else if (currentSupply[i] === 0) {
+    } else if (
+        currentSupply[i] === 0
+    ) {
 
         highlightRow(i);
 
-    } else if (currentDemand[j] === 0) {
+    } else if (
+        currentDemand[j] === 0
+    ) {
 
         highlightCol(j);
     }
@@ -865,23 +920,6 @@ function highlightCol(j) { //викреслення стовпця
 
             el.disabled = true;
         }
-    }
-}
-
-function askBlockChoice(i, j) { 
-
-    let choice = confirm(
-        "OK → викреслити рядок\n" +
-        "Cancel → викреслити стовпець"
-    );
-
-    if (choice) {
-
-        highlightRow(i);
-
-    } else {
-
-        highlightCol(j);
     }
 }
 
@@ -948,7 +986,7 @@ function calculateCorrectCost() { //цільова функція
     return total;
 }
 
-function checkCost() { //перевірка вартості
+function checkCost() {
 
     let user =
         +document.getElementById(
@@ -970,24 +1008,32 @@ function checkCost() { //перевірка вартості
 
         feedback.style.color = "green";
 
+        return;
+    }
+
+    costAttempts++;
+
+    console.log(
+        "Спроба:",
+        costAttempts
+    );
+
+    if (costAttempts === 3) {
+
+        feedback.innerText =
+            "❗ Правильна відповідь: " +
+            correctVal;
+
+        feedback.style.color =
+            "orange";
+
     } else {
 
-        costAttempts++;
+        feedback.innerText =
+            `❌ Неправильно. Спроба ${costAttempts} із 3`;
 
-        if (costAttempts >= 3) {
-
-            feedback.innerText =
-                "❗ Правильна: " + correctVal;
-
-            feedback.style.color = "orange";
-
-        } else {
-
-            feedback.innerText =
-                "❌ Неправильно";
-
-            feedback.style.color = "red";
-        }
+        feedback.style.color =
+            "red";
     }
 }
 
